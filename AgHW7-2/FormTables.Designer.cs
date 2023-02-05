@@ -38,6 +38,8 @@
             this.checkBoxAxis = new System.Windows.Forms.CheckBox();
             this.comboBoxTablesName = new System.Windows.Forms.ComboBox();
             this.buttonDeleteSelectedTable = new System.Windows.Forms.Button();
+            this.buttonRotateLeft = new System.Windows.Forms.Button();
+            this.buttonRotateRight = new System.Windows.Forms.Button();
             this.groupBoxScale.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,6 +144,7 @@
             this.comboBoxTablesName.TabIndex = 5;
             this.comboBoxTablesName.Text = "Empty";
             this.comboBoxTablesName.Visible = false;
+            this.comboBoxTablesName.SelectedIndexChanged += new System.EventHandler(this.comboBoxTablesName_SelectedIndexChanged);
             // 
             // buttonDeleteSelectedTable
             // 
@@ -154,11 +157,35 @@
             this.buttonDeleteSelectedTable.Visible = false;
             this.buttonDeleteSelectedTable.Click += new System.EventHandler(this.buttonDeleteSelectedTable_Click);
             // 
+            // buttonRotateLeft
+            // 
+            this.buttonRotateLeft.Location = new System.Drawing.Point(523, 26);
+            this.buttonRotateLeft.Name = "buttonRotateLeft";
+            this.buttonRotateLeft.Size = new System.Drawing.Size(75, 23);
+            this.buttonRotateLeft.TabIndex = 7;
+            this.buttonRotateLeft.Text = "RotateLeft";
+            this.buttonRotateLeft.UseVisualStyleBackColor = true;
+            this.buttonRotateLeft.Visible = false;
+            this.buttonRotateLeft.Click += new System.EventHandler(this.buttonRotateLeft_Click);
+            // 
+            // buttonRotateRight
+            // 
+            this.buttonRotateRight.Location = new System.Drawing.Point(523, 55);
+            this.buttonRotateRight.Name = "buttonRotateRight";
+            this.buttonRotateRight.Size = new System.Drawing.Size(75, 23);
+            this.buttonRotateRight.TabIndex = 7;
+            this.buttonRotateRight.Text = "RotateRight";
+            this.buttonRotateRight.UseVisualStyleBackColor = true;
+            this.buttonRotateRight.Visible = false;
+            this.buttonRotateRight.Click += new System.EventHandler(this.buttonRotateRight_Click);
+            // 
             // FormTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.buttonRotateRight);
+            this.Controls.Add(this.buttonRotateLeft);
             this.Controls.Add(this.buttonDeleteSelectedTable);
             this.Controls.Add(this.comboBoxTablesName);
             this.Controls.Add(this.groupBoxScale);
@@ -188,5 +215,7 @@
         private System.Windows.Forms.CheckBox checkBoxAxis;
         private System.Windows.Forms.ComboBox comboBoxTablesName;
         private System.Windows.Forms.Button buttonDeleteSelectedTable;
+        private System.Windows.Forms.Button buttonRotateLeft;
+        private System.Windows.Forms.Button buttonRotateRight;
     }
 }

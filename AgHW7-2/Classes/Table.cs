@@ -23,7 +23,7 @@ namespace AgHW7_2
         internal Point TopRight;
         internal Point BottomLeft;
         internal Point BottomRight;
-        internal int Angle = 0;
+        internal int Angle = 90;
         internal int Width;
         internal int Height;
         private static int MaxSideSize = 3;
@@ -98,17 +98,24 @@ namespace AgHW7_2
         }
         private void Turn(int angle)
         {
-
+            Angle += angle;
+            if (Angle >= 360)
+                Angle -= 360;
+            if (Angle < 0)
+                Angle += 360;
         }
         internal void TurnLeft()
         {
-
+            Angle += 90;
+            if (Angle >= 360)
+                Angle -= 360;
         }
         internal void TurnRight()
         {
-
+            Angle -= 90;
+            if (Angle < 0)
+                Angle += 360;
         }
-       // private void MoveLeft
     }
     internal class ListTables
     {
@@ -134,7 +141,7 @@ namespace AgHW7_2
             Tables.RemoveAt(index);
             TableNames.RemoveAt(index);
             Counter--;
-            for (int i = 0; i < TableNames.Count;i++)
+            for (int i = 0; i < TableNames.Count; i++)
             {
                 MoveTable(Tables[i], new Point(i * TableOffset, 0));
             }

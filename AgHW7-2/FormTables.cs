@@ -153,9 +153,21 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
+        private void buttonRotateLeft_Click(object sender, EventArgs e)
+        {
+            ListTables.Tables[SelectedTable].TurnLeft();
+            panelTables.Invalidate();
+        }
+        private void buttonRotateRight_Click(object sender, EventArgs e)
+        {
+            ListTables.Tables[SelectedTable].TurnRight();
+            panelTables.Invalidate();
+        }
         private void SetControlsVisibility(bool visibility)
         {
             buttonDeleteSelectedTable.Visible = visibility;
+            buttonRotateLeft.Visible = visibility;
+            buttonRotateRight.Visible = visibility;
             comboBoxTablesName.Visible = visibility;
         }
         private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
@@ -205,7 +217,10 @@ namespace AgHW7_2
 
         }
 
-        
+        private void comboBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedTable = comboBoxTablesName.SelectedIndex;
+        }
     }
     public class CellPoint
     {
