@@ -31,6 +31,11 @@
             this.panelTables = new System.Windows.Forms.Panel();
             this.buttonAddNewTable = new System.Windows.Forms.Button();
             this.checkBoxGrid = new System.Windows.Forms.CheckBox();
+            this.groupBoxScale = new System.Windows.Forms.GroupBox();
+            this.radioButtonScale2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonScale1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonScale05 = new System.Windows.Forms.RadioButton();
+            this.groupBoxScale.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTables
@@ -55,6 +60,8 @@
             // checkBoxGrid
             // 
             this.checkBoxGrid.AutoSize = true;
+            this.checkBoxGrid.Checked = true;
+            this.checkBoxGrid.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxGrid.Location = new System.Drawing.Point(13, 122);
             this.checkBoxGrid.Name = "checkBoxGrid";
             this.checkBoxGrid.Size = new System.Drawing.Size(56, 17);
@@ -63,17 +70,67 @@
             this.checkBoxGrid.UseVisualStyleBackColor = true;
             this.checkBoxGrid.CheckedChanged += new System.EventHandler(this.checkBoxGrid_CheckedChanged);
             // 
+            // groupBoxScale
+            // 
+            this.groupBoxScale.Controls.Add(this.radioButtonScale2);
+            this.groupBoxScale.Controls.Add(this.radioButtonScale1);
+            this.groupBoxScale.Controls.Add(this.radioButtonScale05);
+            this.groupBoxScale.Location = new System.Drawing.Point(3, 146);
+            this.groupBoxScale.Name = "groupBoxScale";
+            this.groupBoxScale.Size = new System.Drawing.Size(80, 96);
+            this.groupBoxScale.TabIndex = 3;
+            this.groupBoxScale.TabStop = false;
+            this.groupBoxScale.Text = "Scale";
+            // 
+            // radioButtonScale2
+            // 
+            this.radioButtonScale2.AutoSize = true;
+            this.radioButtonScale2.Location = new System.Drawing.Point(6, 66);
+            this.radioButtonScale2.Name = "radioButtonScale2";
+            this.radioButtonScale2.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonScale2.TabIndex = 0;
+            this.radioButtonScale2.Text = "x 2.0";
+            this.radioButtonScale2.UseVisualStyleBackColor = true;
+            this.radioButtonScale2.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
+            // 
+            // radioButtonScale1
+            // 
+            this.radioButtonScale1.AutoSize = true;
+            this.radioButtonScale1.Checked = true;
+            this.radioButtonScale1.Location = new System.Drawing.Point(6, 43);
+            this.radioButtonScale1.Name = "radioButtonScale1";
+            this.radioButtonScale1.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonScale1.TabIndex = 0;
+            this.radioButtonScale1.TabStop = true;
+            this.radioButtonScale1.Text = "x 1.0";
+            this.radioButtonScale1.UseVisualStyleBackColor = true;
+            this.radioButtonScale1.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
+            // 
+            // radioButtonScale05
+            // 
+            this.radioButtonScale05.AutoSize = true;
+            this.radioButtonScale05.Location = new System.Drawing.Point(7, 20);
+            this.radioButtonScale05.Name = "radioButtonScale05";
+            this.radioButtonScale05.Size = new System.Drawing.Size(48, 17);
+            this.radioButtonScale05.TabIndex = 0;
+            this.radioButtonScale05.Text = "x 0.5";
+            this.radioButtonScale05.UseVisualStyleBackColor = true;
+            this.radioButtonScale05.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
+            // 
             // FormTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.groupBoxScale);
             this.Controls.Add(this.checkBoxGrid);
             this.Controls.Add(this.buttonAddNewTable);
             this.Controls.Add(this.panelTables);
             this.Name = "FormTables";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FormTables";
+            this.groupBoxScale.ResumeLayout(false);
+            this.groupBoxScale.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,5 +141,9 @@
         private System.Windows.Forms.Panel panelTables;
         private System.Windows.Forms.Button buttonAddNewTable;
         private System.Windows.Forms.CheckBox checkBoxGrid;
+        private System.Windows.Forms.GroupBox groupBoxScale;
+        private System.Windows.Forms.RadioButton radioButtonScale2;
+        private System.Windows.Forms.RadioButton radioButtonScale1;
+        private System.Windows.Forms.RadioButton radioButtonScale05;
     }
 }

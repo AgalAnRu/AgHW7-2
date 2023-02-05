@@ -17,8 +17,11 @@ namespace AgHW7_2
     }
     public partial class FormTables : Form
     {
-        private PanelGrid Grid = PanelGrid.Off;
+        private PanelGrid Grid = PanelGrid.On;
         private PanelGrid Tabl = PanelGrid.Off;
+        private int GlobalScale = 2;
+        private int GraphicScale = 10;
+        private Point CoordinateOriginPoint;
         public FormTables()
         {
             InitializeComponent();
@@ -49,7 +52,7 @@ namespace AgHW7_2
         private void DrawGrideOnPanel(Panel panel, Graphics gr)
         {
             Pen pen = new Pen(Color.Gray, 1);
-            int grideSize = 10;
+            int grideSize = GlobalScale * GraphicScale;
             int numberVerticalLine = panel.Width / grideSize;
             int numberGorizontalLine = panel.Height / grideSize;
             Point fromPoint = new Point(0, 0);
@@ -69,7 +72,6 @@ namespace AgHW7_2
                 gr.DrawLine(pen, fromPoint, toPoint);
             }
         }
-
         private void buttonAddNewTable_Click(object sender, EventArgs e)
         {
             if (Tabl == PanelGrid.Off)
@@ -78,8 +80,6 @@ namespace AgHW7_2
                 Tabl = PanelGrid.Off;
             panelTables.Invalidate();
         }
-
-
         private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxGrid.Checked)
@@ -92,5 +92,35 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
+
+        private void radioButtonScale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonScale05.Checked)
+            {
+                GraphicScale = 5;
+            }
+            if (radioButtonScale1.Checked)
+            {
+                GraphicScale = 10;
+            }
+            if (radioButtonScale2.Checked)
+            {
+                GraphicScale = 20;
+            }
+            panelTables.Invalidate();
+        }
+        
+        private Point ConvertCoordinateToCell(Point point)
+        {
+
+        }
     }
+    public class CellPoint
+    {
+        public int X;
+        public int Y;
+        public int OriginX;
+        public int OriginY;
+    }
+
 }
