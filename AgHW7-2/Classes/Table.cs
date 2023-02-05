@@ -22,6 +22,7 @@ namespace AgHW7_2
         internal Point TopRight;
         internal Point BottomLeft;
         internal Point BottomRight;
+        //internal Corner BL;
         internal int Angle;
         internal int Width;
         internal int Height;
@@ -33,6 +34,7 @@ namespace AgHW7_2
         {
             Width = Rnd.Next(MinSideSize, MaxSideSize + 1);
             Height = MaxTableArea / Width;
+            //Corner BL = new Corner ()
             BottomLeft.X = 0;
             BottomLeft.Y = 0;
 
@@ -95,6 +97,20 @@ namespace AgHW7_2
         internal void TurnLeft()
         {
 
+        }
+    }
+    internal class Corner
+    {
+        internal int X;
+        internal int Y;
+        internal static int X0;
+        internal static int Y0;
+        internal int DeltaX;
+        internal int DeltaY;
+        internal Corner(Point startPoint, int deltaX, int deltaY, int angle)
+        {
+            X = startPoint.X + deltaX;
+            Y = startPoint.Y + deltaY;
         }
     }
 }
