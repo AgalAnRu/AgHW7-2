@@ -27,6 +27,7 @@ namespace AgHW7_2
         private int XOffset = 5;
         public Point OriginXY;
         public Point OriginGridXY = new Point(3, 5);
+        private Table Table = new Table(new Point(1, 1));
         //private Point CoordinateOriginPoint;
         public FormTables()
         {
@@ -54,8 +55,22 @@ namespace AgHW7_2
         }
         private void DrawTables(Graphics gr)
         {
+            DrawTable(gr, Table);
+        }
+
+        private void DrawTable(Graphics gr, Table table)
+        {
             Pen pen = new Pen(Color.Red, 2);
-            DrawLineOnGraphic(gr, pen, 1, 1, 3, 2);            
+            Point[] corners = table.GetCorners();
+            int scale = GlobalScale * GraphicScale;
+            CellPoint cellPoints= new CellPoint(panelTables, scale);
+            Point[] polygonCornes = new Point[corners.Length];
+            for (int i = 0; i < corners.Length; i++)
+            {
+                cellPoints.SetXY(corners[i].X, corners[i].Y);
+                polygonCornes[i] = cellPoints.ToOriginPoint();
+            }
+            gr.DrawPolygon(pen, polygonCornes);
         }
         private void DrawLineOnGraphic(Graphics gr, Pen pen, int fromX, int fromY, int toX, int toY)
         {

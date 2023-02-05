@@ -23,7 +23,7 @@ namespace AgHW7_2
         internal Point BottomLeft;
         internal Point BottomRight;
         //internal Corner BL;
-        internal int Angle;
+        internal int Angle = 0;
         internal int Width;
         internal int Height;
         private static int MaxSideSize = 3;
@@ -32,6 +32,7 @@ namespace AgHW7_2
         private static Random Rnd = new Random();
         internal Table()
         {
+            FixedCorner = FixedCorner.BottomLeft;
             Width = Rnd.Next(MinSideSize, MaxSideSize + 1);
             Height = MaxTableArea / Width;
             //Corner BL = new Corner ()
@@ -54,11 +55,16 @@ namespace AgHW7_2
             FixedCorner = fixedCorner;
             //Дописать перегрузку
         }
-        internal void CalculateTableCoordinates(Table table)
+        internal Point[] GetCorners()
         {
-            //TopLeft.X = BottomLeft;
+            Point[] corners = new Point[4];
+            corners[0] = GetBottomLeft();
+            corners[1] = GetBottomRight();
+            corners[2] = GetTopRight();
+            corners[3] = GetTopLeft();
+            return corners;
         }
-        internal Point GetBottomLeft(Table table)
+        internal Point GetBottomLeft()
         {
             if (FixedCorner == FixedCorner.BottomLeft) { }
             return BottomLeft;
@@ -76,19 +82,19 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                TopLeft.X = (int)(BottomLeft.X + Height * Math.Sin(Angle));
+                TopLeft.X = (int)(BottomLeft.X - Height * Math.Sin(Angle));
                 TopLeft.Y = (int)(BottomLeft.Y + Height * Math.Cos(Angle));
             }
-            return BottomRight;
+            return TopLeft;
         }
         internal Point GetTopRight()
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                TopRight.X = (int)(BottomLeft.X + Width * Math.Cos(Angle));
-                TopRight.Y = (int)(BottomLeft.Y + Height * Math.Cos(Angle));
+                TopRight.X = (int)(BottomLeft.X + Width * Math.Cos(Angle) - Height * Math.Sin(Angle));
+                TopRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(Angle) + Height * Math.Cos(Angle));
             }
-            return BottomRight;
+            return TopRight;
         }
         private void Turn (int angle)
         {
