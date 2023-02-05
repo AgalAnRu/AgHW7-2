@@ -35,6 +35,7 @@
             this.radioButtonScale2 = new System.Windows.Forms.RadioButton();
             this.radioButtonScale1 = new System.Windows.Forms.RadioButton();
             this.radioButtonScale05 = new System.Windows.Forms.RadioButton();
+            this.checkBoxAxis = new System.Windows.Forms.CheckBox();
             this.groupBoxScale.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,9 +65,9 @@
             this.checkBoxGrid.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxGrid.Location = new System.Drawing.Point(13, 122);
             this.checkBoxGrid.Name = "checkBoxGrid";
-            this.checkBoxGrid.Size = new System.Drawing.Size(56, 17);
+            this.checkBoxGrid.Size = new System.Drawing.Size(51, 17);
             this.checkBoxGrid.TabIndex = 2;
-            this.checkBoxGrid.Text = "Сетка";
+            this.checkBoxGrid.Text = "Gride";
             this.checkBoxGrid.UseVisualStyleBackColor = true;
             this.checkBoxGrid.CheckedChanged += new System.EventHandler(this.checkBoxGrid_CheckedChanged);
             // 
@@ -75,7 +76,7 @@
             this.groupBoxScale.Controls.Add(this.radioButtonScale2);
             this.groupBoxScale.Controls.Add(this.radioButtonScale1);
             this.groupBoxScale.Controls.Add(this.radioButtonScale05);
-            this.groupBoxScale.Location = new System.Drawing.Point(3, 146);
+            this.groupBoxScale.Location = new System.Drawing.Point(1, 191);
             this.groupBoxScale.Name = "groupBoxScale";
             this.groupBoxScale.Size = new System.Drawing.Size(80, 96);
             this.groupBoxScale.TabIndex = 3;
@@ -117,12 +118,26 @@
             this.radioButtonScale05.UseVisualStyleBackColor = true;
             this.radioButtonScale05.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
             // 
+            // checkBoxAxis
+            // 
+            this.checkBoxAxis.AutoSize = true;
+            this.checkBoxAxis.Checked = true;
+            this.checkBoxAxis.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxAxis.Location = new System.Drawing.Point(12, 145);
+            this.checkBoxAxis.Name = "checkBoxAxis";
+            this.checkBoxAxis.Size = new System.Drawing.Size(45, 17);
+            this.checkBoxAxis.TabIndex = 2;
+            this.checkBoxAxis.Text = "Axis";
+            this.checkBoxAxis.UseVisualStyleBackColor = true;
+            this.checkBoxAxis.CheckedChanged += new System.EventHandler(this.checkBoxAxis_CheckedChanged);
+            // 
             // FormTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.groupBoxScale);
+            this.Controls.Add(this.checkBoxAxis);
             this.Controls.Add(this.checkBoxGrid);
             this.Controls.Add(this.buttonAddNewTable);
             this.Controls.Add(this.panelTables);
@@ -145,5 +160,6 @@
         private System.Windows.Forms.RadioButton radioButtonScale2;
         private System.Windows.Forms.RadioButton radioButtonScale1;
         private System.Windows.Forms.RadioButton radioButtonScale05;
+        private System.Windows.Forms.CheckBox checkBoxAxis;
     }
 }
