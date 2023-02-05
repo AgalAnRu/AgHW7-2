@@ -21,14 +21,14 @@ namespace AgHW7_2
     {
         private Visibility Grid = Visibility.On;
         private Visibility Axis = Visibility.On;
-        private Visibility Tabl= Visibility.On;
+        private Visibility Tabl = Visibility.On;
         private int GlobalScale = 2;
         private int GraphicScale = 10;
         private int XOffset = 5;
+        private int SelectedTable;
         public Point OriginXY;
         public Point OriginGridXY = new Point(3, 5);
-        private Table Table = new Table(new Point(1, 1));
-        //private Point CoordinateOriginPoint;
+        private ListTables TablesList;
         public FormTables()
         {
             InitializeComponent();
@@ -46,24 +46,21 @@ namespace AgHW7_2
                 {
                     DrawAxis(panelTables, gr);
                 }
-                if (Tabl == Visibility.On)
+                if (ListTables.Tables.Count > 0)
                 {
-                    DrawTables(gr);
+                    foreach (Table table in ListTables.Tables)
+                    {
+                        DrawTable(gr, table);
+                    }
                 }
             }
-
         }
-        private void DrawTables(Graphics gr)
-        {
-            DrawTable(gr, Table);
-        }
-
         private void DrawTable(Graphics gr, Table table)
         {
             Pen pen = new Pen(Color.Red, 2);
             Point[] corners = table.GetCorners();
             int scale = GlobalScale * GraphicScale;
-            CellPoint cellPoints= new CellPoint(panelTables, scale);
+            CellPoint cellPoints = new CellPoint(panelTables, scale);
             Point[] polygonCornes = new Point[corners.Length];
             for (int i = 0; i < corners.Length; i++)
             {
@@ -94,13 +91,13 @@ namespace AgHW7_2
             Point toPoint = toCellPoint.ToOriginPoint();
             gr.DrawLine(pen, fromPoint, toPoint);
         }
-        private void DrawAxis (Panel panel, Graphics gr)
+        private void DrawAxis(Panel panel, Graphics gr)
         {
             Pen pen = new Pen(Color.Blue, 1);
-            Point fromPoint = new Point(0, panel.Height/2);
+            Point fromPoint = new Point(0, panel.Height / 2);
             Point toPoint = new Point(panel.Width, panel.Height / 2);
             gr.DrawLine(pen, fromPoint, toPoint);
-            fromPoint.X = XOffset*GlobalScale*GraphicScale;
+            fromPoint.X = XOffset * GlobalScale * GraphicScale;
             fromPoint.Y = 0;
             toPoint.X = fromPoint.X;
             toPoint.Y = panel.Height;
@@ -128,15 +125,38 @@ namespace AgHW7_2
                 toPoint.X += grideSize;
                 gr.DrawLine(pen, fromPoint, toPoint);
             }
-            //DrawAxis (panel, gr);
         }
         private void buttonAddNewTable_Click(object sender, EventArgs e)
         {
-            if (Tabl == Visibility.Off)
-                Tabl = Visibility.On;
-            else
-                Tabl = Visibility.Off;
+            ListTables.Add();
+            SetControlsVisibility(true);
+            comboBoxTablesName.Items.Add(ListTables.TableNames[ListTables.TableNames.Count - 1]);
+            comboBoxTablesName.Text = comboBoxTablesName.Items[comboBoxTablesName.Items.Count-1].ToString();
+            comboBoxTablesName.SelectedIndex = comboBoxTablesName.Items.Count - 1;
+            SelectedTable = comboBoxTablesName.SelectedIndex;
             panelTables.Invalidate();
+        }
+        private void buttonDeleteSelectedTable_Click(object sender, EventArgs e)
+        {
+            SelectedTable = comboBoxTablesName.SelectedIndex;
+            ListTables.Delete(SelectedTable);
+            comboBoxTablesName.Items.Remove(comboBoxTablesName.Items[SelectedTable]);
+            if (ListTables.Tables.Count != 0)
+            {
+                SelectedTable = ListTables.Tables.Count - 1;
+                comboBoxTablesName.Text = comboBoxTablesName.Items[SelectedTable].ToString();
+                comboBoxTablesName.SelectedIndex = SelectedTable;
+            }
+            if (ListTables.Tables.Count == 0)
+            {
+                SetControlsVisibility(false);
+            }
+            panelTables.Invalidate();
+        }
+        private void SetControlsVisibility(bool visibility)
+        {
+            buttonDeleteSelectedTable.Visible = visibility;
+            comboBoxTablesName.Visible = visibility;
         }
         private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
@@ -184,6 +204,8 @@ namespace AgHW7_2
         {
 
         }
+
+        
     }
     public class CellPoint
     {
@@ -194,7 +216,7 @@ namespace AgHW7_2
         private int Scale;
         private int StartX;
         private int StartY;
-        public CellPoint(Panel panel, int scale=20, int startX=5, int x=0, int y=0 )
+        public CellPoint(Panel panel, int scale = 20, int startX = 5, int x = 0, int y = 0)
         {
             X = x;
             Y = y;
@@ -206,12 +228,12 @@ namespace AgHW7_2
         }
         public Point ToOriginPoint()
         {
-            Point originPoint= new Point();
+            Point originPoint = new Point();
             originPoint.X = OriginX;
             originPoint.Y = OriginY;
             return originPoint;
         }
-        public void SetXY (int x, int y)
+        public void SetXY(int x, int y)
         {
             X = x;
             Y = y;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Data;
 
 public enum FixedCorner
 {
@@ -22,7 +23,6 @@ namespace AgHW7_2
         internal Point TopRight;
         internal Point BottomLeft;
         internal Point BottomRight;
-        //internal Corner BL;
         internal int Angle = 0;
         internal int Width;
         internal int Height;
@@ -96,13 +96,52 @@ namespace AgHW7_2
             }
             return TopRight;
         }
-        private void Turn (int angle)
+        private void Turn(int angle)
         {
 
         }
         internal void TurnLeft()
         {
 
+        }
+        internal void TurnRight()
+        {
+
+        }
+       // private void MoveLeft
+    }
+    internal class ListTables
+    {
+        internal static List<Table> Tables;
+        static int Counter = 0;
+        static int ID = 1;
+        internal static List<string> TableNames;
+        static int TableOffset = 5;
+        static ListTables()
+        {
+            Tables = new List<Table>();
+            TableNames = new List<string>();
+        }
+        internal static void Add()
+        {
+            Tables.Add(new Table(new Point(Counter * TableOffset, 0)));
+            TableNames.Add($"Table #{ID}");
+            ID++;
+            Counter++;
+        }
+        internal static void Delete(int index)
+        {
+            Tables.RemoveAt(index);
+            TableNames.RemoveAt(index);
+            Counter--;
+            for (int i = 0; i < TableNames.Count;i++)
+            {
+                MoveTable(Tables[i], new Point(i * TableOffset, 0));
+            }
+        }
+        private static void MoveTable(Table table, Point point)
+        {
+            table.BottomLeft = point;
         }
     }
     internal class Corner

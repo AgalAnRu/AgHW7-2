@@ -36,6 +36,8 @@
             this.radioButtonScale1 = new System.Windows.Forms.RadioButton();
             this.radioButtonScale05 = new System.Windows.Forms.RadioButton();
             this.checkBoxAxis = new System.Windows.Forms.CheckBox();
+            this.comboBoxTablesName = new System.Windows.Forms.ComboBox();
+            this.buttonDeleteSelectedTable = new System.Windows.Forms.Button();
             this.groupBoxScale.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             // 
             this.buttonAddNewTable.Location = new System.Drawing.Point(100, 12);
             this.buttonAddNewTable.Name = "buttonAddNewTable";
-            this.buttonAddNewTable.Size = new System.Drawing.Size(102, 30);
+            this.buttonAddNewTable.Size = new System.Drawing.Size(64, 51);
             this.buttonAddNewTable.TabIndex = 1;
             this.buttonAddNewTable.Text = "Add  new Table";
             this.buttonAddNewTable.UseVisualStyleBackColor = true;
@@ -131,11 +133,34 @@
             this.checkBoxAxis.UseVisualStyleBackColor = true;
             this.checkBoxAxis.CheckedChanged += new System.EventHandler(this.checkBoxAxis_CheckedChanged);
             // 
+            // comboBoxTablesName
+            // 
+            this.comboBoxTablesName.FormattingEnabled = true;
+            this.comboBoxTablesName.Location = new System.Drawing.Point(210, 12);
+            this.comboBoxTablesName.Name = "comboBoxTablesName";
+            this.comboBoxTablesName.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTablesName.TabIndex = 5;
+            this.comboBoxTablesName.Text = "Empty";
+            this.comboBoxTablesName.Visible = false;
+            // 
+            // buttonDeleteSelectedTable
+            // 
+            this.buttonDeleteSelectedTable.Location = new System.Drawing.Point(401, 12);
+            this.buttonDeleteSelectedTable.Name = "buttonDeleteSelectedTable";
+            this.buttonDeleteSelectedTable.Size = new System.Drawing.Size(92, 51);
+            this.buttonDeleteSelectedTable.TabIndex = 6;
+            this.buttonDeleteSelectedTable.Text = "Delete Selected Table";
+            this.buttonDeleteSelectedTable.UseVisualStyleBackColor = true;
+            this.buttonDeleteSelectedTable.Visible = false;
+            this.buttonDeleteSelectedTable.Click += new System.EventHandler(this.buttonDeleteSelectedTable_Click);
+            // 
             // FormTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.buttonDeleteSelectedTable);
+            this.Controls.Add(this.comboBoxTablesName);
             this.Controls.Add(this.groupBoxScale);
             this.Controls.Add(this.checkBoxAxis);
             this.Controls.Add(this.checkBoxGrid);
@@ -161,5 +186,7 @@
         private System.Windows.Forms.RadioButton radioButtonScale1;
         private System.Windows.Forms.RadioButton radioButtonScale05;
         private System.Windows.Forms.CheckBox checkBoxAxis;
+        private System.Windows.Forms.ComboBox comboBoxTablesName;
+        private System.Windows.Forms.Button buttonDeleteSelectedTable;
     }
 }
