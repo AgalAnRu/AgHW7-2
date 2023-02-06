@@ -23,7 +23,8 @@ namespace AgHW7_2
         internal Point TopRight;
         internal Point BottomLeft;
         internal Point BottomRight;
-        internal int Angle = 90;
+        internal int AngleDegrees = 0;
+        private double AngleRadians;
         internal int Width;
         internal int Height;
         private static int MaxSideSize = 3;
@@ -38,7 +39,7 @@ namespace AgHW7_2
             //Corner BL = new Corner ()
             BottomLeft.X = 0;
             BottomLeft.Y = 0;
-
+            AngleRadians = AngleDegrees * Math.PI / 180.0;
         }
         internal Table(Point pointFixedCorner)
         {
@@ -47,12 +48,14 @@ namespace AgHW7_2
             Height = MaxTableArea / Width;
             BottomLeft.X = pointFixedCorner.X;
             BottomLeft.Y = pointFixedCorner.Y;
+            AngleRadians = AngleDegrees * Math.PI / 180.0;
         }
         internal Table(Point pointFixedCorner, FixedCorner fixedCorner)
         {
             Width = Rnd.Next(MinSideSize, MaxSideSize + 1);
             Height = MaxTableArea / Width;
             FixedCorner = fixedCorner;
+            AngleRadians = AngleDegrees * Math.PI / 180.0;
             //Дописать перегрузку
         }
         internal Point[] GetCorners()
@@ -73,8 +76,8 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                BottomRight.X = (int)(BottomLeft.X + Width * Math.Cos(Angle));
-                BottomRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(Angle));
+                BottomRight.X = (int)(BottomLeft.X + Width * Math.Cos(AngleRadians));
+                BottomRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(AngleRadians));
             }
             return BottomRight;
         }
@@ -82,8 +85,8 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                TopLeft.X = (int)(BottomLeft.X - Height * Math.Sin(Angle));
-                TopLeft.Y = (int)(BottomLeft.Y + Height * Math.Cos(Angle));
+                TopLeft.X = (int)(BottomLeft.X - Height * Math.Sin(AngleRadians));
+                TopLeft.Y = (int)(BottomLeft.Y + Height * Math.Cos(AngleRadians));
             }
             return TopLeft;
         }
@@ -91,30 +94,33 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                TopRight.X = (int)(BottomLeft.X + Width * Math.Cos(Angle) - Height * Math.Sin(Angle));
-                TopRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(Angle) + Height * Math.Cos(Angle));
+                TopRight.X = (int)(BottomLeft.X + Width * Math.Cos(AngleRadians) - Height * Math.Sin(AngleRadians));
+                TopRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(AngleRadians) + Height * Math.Cos(AngleRadians));
             }
             return TopRight;
         }
         private void Turn(int angle)
         {
-            Angle += angle;
-            if (Angle >= 360)
-                Angle -= 360;
-            if (Angle < 0)
-                Angle += 360;
+            AngleDegrees += angle;
+            if (AngleDegrees >= 360)
+                AngleDegrees -= 360;
+            if (AngleDegrees < 0)
+                AngleDegrees += 360;
+            AngleRadians = AngleDegrees * Math.PI / 180.0;
         }
         internal void TurnLeft()
         {
-            Angle += 90;
-            if (Angle >= 360)
-                Angle -= 360;
+            AngleDegrees += 90;
+            if (AngleDegrees >= 360)
+                AngleDegrees -= 360;
+            AngleRadians = AngleDegrees * Math.PI / 180.0;
         }
         internal void TurnRight()
         {
-            Angle -= 90;
-            if (Angle < 0)
-                Angle += 360;
+            AngleDegrees -= 90;
+            if (AngleDegrees < 0)
+                AngleDegrees += 360;
+            AngleRadians = AngleDegrees * Math.PI / 180.0;
         }
     }
     internal class ListTables
