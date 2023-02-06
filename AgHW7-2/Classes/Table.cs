@@ -76,8 +76,8 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                BottomRight.X = (int)(BottomLeft.X + Width * Math.Cos(AngleRadians));
-                BottomRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(AngleRadians));
+                BottomRight.X = (int)(BottomLeft.X + Width * Math.Round( Math.Cos(AngleRadians)));
+                BottomRight.Y = (int)(BottomLeft.Y + Width * Math.Round(Math.Sin(AngleRadians)));
             }
             return BottomRight;
         }
@@ -85,8 +85,8 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                TopLeft.X = (int)(BottomLeft.X - Height * Math.Sin(AngleRadians));
-                TopLeft.Y = (int)(BottomLeft.Y + Height * Math.Cos(AngleRadians));
+                TopLeft.X = (int)(BottomLeft.X - Height * Math.Round(Math.Sin(AngleRadians)));
+                TopLeft.Y = (int)(BottomLeft.Y + Height * Math.Round(Math.Cos(AngleRadians)));
             }
             return TopLeft;
         }
@@ -94,8 +94,8 @@ namespace AgHW7_2
         {
             if (FixedCorner == FixedCorner.BottomLeft)
             {
-                TopRight.X = (int)(BottomLeft.X + Width * Math.Cos(AngleRadians) - Height * Math.Sin(AngleRadians));
-                TopRight.Y = (int)(BottomLeft.Y + Width * Math.Sin(AngleRadians) + Height * Math.Cos(AngleRadians));
+                TopRight.X = (int)(BottomLeft.X + Width * Math.Round(Math.Cos(AngleRadians)) - Height * Math.Round(Math.Sin(AngleRadians)));
+                TopRight.Y = (int)(BottomLeft.Y + Width * Math.Round(Math.Sin(AngleRadians)) + Height * Math.Round(Math.Cos(AngleRadians)));
             }
             return TopRight;
         }
@@ -155,20 +155,6 @@ namespace AgHW7_2
         private static void MoveTable(Table table, Point point)
         {
             table.BottomLeft = point;
-        }
-    }
-    internal class Corner
-    {
-        internal int X;
-        internal int Y;
-        internal static int X0;
-        internal static int Y0;
-        internal int DeltaX;
-        internal int DeltaY;
-        internal Corner(Point startPoint, int deltaX, int deltaY, int angle)
-        {
-            X = startPoint.X + deltaX;
-            Y = startPoint.Y + deltaY;
         }
     }
 }
