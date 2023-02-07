@@ -21,7 +21,7 @@ namespace AgHW7_2
     {
         private Visibility Grid = Visibility.On;
         private Visibility Axis = Visibility.On;
-        private Visibility Tabl = Visibility.On;
+        //private Visibility Tabl = Visibility.On;
         private int GlobalScale = 2;
         private int GraphicScale = 10;
         private int XOffset = 5;
@@ -35,7 +35,6 @@ namespace AgHW7_2
         }
         private void panelTables_Paint(object sender, PaintEventArgs e)
         {
-            //OriginXY = 
             using (Graphics gr = e.Graphics)
             {
                 if (Grid == Visibility.On)
@@ -68,28 +67,6 @@ namespace AgHW7_2
                 polygonCornes[i] = cellPoints.ToOriginPoint();
             }
             gr.DrawPolygon(pen, polygonCornes);
-        }
-        private void DrawLineOnGraphic(Graphics gr, Pen pen, int fromX, int fromY, int toX, int toY)
-        {
-            int scale = GlobalScale * GraphicScale;
-            CellPoint fromCellPoint = new CellPoint(panelTables, scale, XOffset);
-            CellPoint toCellPoint = new CellPoint(panelTables, scale, XOffset);
-            fromCellPoint.SetXY(fromX, fromY);
-            toCellPoint.SetXY(toX, toY);
-            Point fromPoint = fromCellPoint.ToOriginPoint();
-            Point toPoint = toCellPoint.ToOriginPoint();
-            gr.DrawLine(pen, fromPoint, toPoint);
-        }
-        private void DrawLineOnGraphic(Graphics gr, Pen pen, Point from, Point to)
-        {
-            int scale = GlobalScale * GraphicScale;
-            CellPoint fromCellPoint = new CellPoint(panelTables, scale, XOffset);
-            CellPoint toCellPoint = new CellPoint(panelTables, scale, XOffset);
-            fromCellPoint.SetXY(from.X, from.Y);
-            toCellPoint.SetXY(to.X, to.Y);
-            Point fromPoint = fromCellPoint.ToOriginPoint();
-            Point toPoint = toCellPoint.ToOriginPoint();
-            gr.DrawLine(pen, fromPoint, toPoint);
         }
         private void DrawAxis(Panel panel, Graphics gr)
         {
@@ -126,6 +103,7 @@ namespace AgHW7_2
                 gr.DrawLine(pen, fromPoint, toPoint);
             }
         }
+        //== Controls
         private void buttonAddNewTable_Click(object sender, EventArgs e)
         {
             ListTables.Add();
@@ -194,7 +172,6 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-
         private void radioButtonScale_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonScale05.Checked)
@@ -211,15 +188,40 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-
-        private void ConvertCoordinateToCell(Point point)
-        {
-
-        }
-
         private void comboBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedTable = comboBoxTablesName.SelectedIndex;
+        }
+        private void panelTables_Resize(object sender, EventArgs e)
+        {
+            panelTables.Invalidate();
+        }
+        // == Не используются
+        private void DrawLineOnGraphic(Graphics gr, Pen pen, int fromX, int fromY, int toX, int toY)
+        {
+            int scale = GlobalScale * GraphicScale;
+            CellPoint fromCellPoint = new CellPoint(panelTables, scale, XOffset);
+            CellPoint toCellPoint = new CellPoint(panelTables, scale, XOffset);
+            fromCellPoint.SetXY(fromX, fromY);
+            toCellPoint.SetXY(toX, toY);
+            Point fromPoint = fromCellPoint.ToOriginPoint();
+            Point toPoint = toCellPoint.ToOriginPoint();
+            gr.DrawLine(pen, fromPoint, toPoint);
+        }
+        private void DrawLineOnGraphic(Graphics gr, Pen pen, Point from, Point to)
+        {
+            int scale = GlobalScale * GraphicScale;
+            CellPoint fromCellPoint = new CellPoint(panelTables, scale, XOffset);
+            CellPoint toCellPoint = new CellPoint(panelTables, scale, XOffset);
+            fromCellPoint.SetXY(from.X, from.Y);
+            toCellPoint.SetXY(to.X, to.Y);
+            Point fromPoint = fromCellPoint.ToOriginPoint();
+            Point toPoint = toCellPoint.ToOriginPoint();
+            gr.DrawLine(pen, fromPoint, toPoint);
+        }
+        private void ConvertCoordinateToCell(Point point)
+        {
+
         }
     }
     public class CellPoint
@@ -256,5 +258,4 @@ namespace AgHW7_2
             OriginY = Scale * (StartY - Y);
         }
     }
-
 }

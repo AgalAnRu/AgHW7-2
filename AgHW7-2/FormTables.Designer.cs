@@ -45,12 +45,16 @@
             // 
             // panelTables
             // 
+            this.panelTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTables.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panelTables.Location = new System.Drawing.Point(100, 122);
             this.panelTables.Name = "panelTables";
             this.panelTables.Size = new System.Drawing.Size(800, 400);
             this.panelTables.TabIndex = 0;
             this.panelTables.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTables_Paint);
+            this.panelTables.Resize += new System.EventHandler(this.panelTables_Resize);
             // 
             // buttonAddNewTable
             // 
@@ -183,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(908, 530);
             this.Controls.Add(this.buttonRotateRight);
             this.Controls.Add(this.buttonRotateLeft);
             this.Controls.Add(this.buttonDeleteSelectedTable);
