@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
 
 namespace AgHW7_2
 {
@@ -21,14 +13,11 @@ namespace AgHW7_2
     {
         private Visibility Grid = Visibility.On;
         private Visibility Axis = Visibility.On;
-        //private Visibility Tabl = Visibility.On;
-        private int GlobalScale = 2;
+        private readonly int GlobalScale = 2;
+        private readonly int XOffset = 5;
         private int GraphicScale = 10;
-        private int XOffset = 5;
         private int SelectedTable;
         public Point OriginXY;
-        public Point OriginGridXY = new Point(3, 5);
-        private ListTables TablesList;
         public FormTables()
         {
             InitializeComponent();
@@ -56,7 +45,6 @@ namespace AgHW7_2
         }
         private void DrawTable(Graphics gr, Table table)
         {
-            Pen pen = new Pen(Color.Red, 2);
             Point[] corners = table.GetCorners();
             int scale = GlobalScale * GraphicScale;
             CellPoint cellPoints = new CellPoint(panelTables, scale);
@@ -66,15 +54,19 @@ namespace AgHW7_2
                 cellPoints.SetXY(corners[i].X, corners[i].Y);
                 polygonCornes[i] = cellPoints.ToOriginPoint();
             }
+            Pen pen = new Pen(Color.Red, 2);
             gr.DrawPolygon(pen, polygonCornes);
         }
         private void DrawAxis(Panel panel, Graphics gr)
         {
             Pen pen = new Pen(Color.Blue, 1);
-            Point fromPoint = new Point(0, panel.Height / 2);
-            Point toPoint = new Point(panel.Width, panel.Height / 2);
+            int yAxis = panel.Height / 2;
+            int scale = GlobalScale * GraphicScale;
+            yAxis -= yAxis % scale;
+            Point fromPoint = new Point(0, yAxis);
+            Point toPoint = new Point(panel.Width, yAxis);
             gr.DrawLine(pen, fromPoint, toPoint);
-            fromPoint.X = XOffset * GlobalScale * GraphicScale;
+            fromPoint.X = XOffset * scale;
             fromPoint.Y = 0;
             toPoint.X = fromPoint.X;
             toPoint.Y = panel.Height;
@@ -84,8 +76,6 @@ namespace AgHW7_2
         {
             Pen pen = new Pen(Color.Gray, 1);
             int grideSize = GlobalScale * GraphicScale;
-            int numberVerticalLine = panel.Width / grideSize;
-            int numberGorizontalLine = panel.Height / grideSize;
             Point fromPoint = new Point(0, 0);
             Point toPoint = new Point(panel.Width, 0);
             for (int i = 0; i < panel.Height; i += grideSize)
@@ -104,17 +94,17 @@ namespace AgHW7_2
             }
         }
         //== Controls
-        private void buttonAddNewTable_Click(object sender, EventArgs e)
+        private void ButtonAddNewTable_Click(object sender, EventArgs e)
         {
             ListTables.Add();
             SetControlsVisibility(true);
             comboBoxTablesName.Items.Add(ListTables.TableNames[ListTables.TableNames.Count - 1]);
-            comboBoxTablesName.Text = comboBoxTablesName.Items[comboBoxTablesName.Items.Count-1].ToString();
+            comboBoxTablesName.Text = comboBoxTablesName.Items[comboBoxTablesName.Items.Count - 1].ToString();
             comboBoxTablesName.SelectedIndex = comboBoxTablesName.Items.Count - 1;
             SelectedTable = comboBoxTablesName.SelectedIndex;
             panelTables.Invalidate();
         }
-        private void buttonDeleteSelectedTable_Click(object sender, EventArgs e)
+        private void ButtonDeleteSelectedTable_Click(object sender, EventArgs e)
         {
             SelectedTable = comboBoxTablesName.SelectedIndex;
             ListTables.Delete(SelectedTable);
@@ -131,12 +121,12 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-        private void buttonRotateLeft_Click(object sender, EventArgs e)
+        private void ButtonRotateLeft_Click(object sender, EventArgs e)
         {
             ListTables.Tables[SelectedTable].TurnLeft();
             panelTables.Invalidate();
         }
-        private void buttonRotateRight_Click(object sender, EventArgs e)
+        private void ButtonRotateRight_Click(object sender, EventArgs e)
         {
             ListTables.Tables[SelectedTable].TurnRight();
             panelTables.Invalidate();
@@ -148,7 +138,7 @@ namespace AgHW7_2
             buttonRotateRight.Visible = visibility;
             comboBoxTablesName.Visible = visibility;
         }
-        private void checkBoxGrid_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxGrid.Checked)
             {
@@ -160,7 +150,7 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-        private void checkBoxAxis_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAxis_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxAxis.Checked)
             {
@@ -172,7 +162,7 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-        private void radioButtonScale_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonScale_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonScale05.Checked)
             {
@@ -188,11 +178,11 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-        private void comboBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedTable = comboBoxTablesName.SelectedIndex;
         }
-        private void panelTables_Resize(object sender, EventArgs e)
+        private void PanelTables_Resize(object sender, EventArgs e)
         {
             panelTables.Invalidate();
         }

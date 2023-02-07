@@ -54,7 +54,7 @@
             this.panelTables.Size = new System.Drawing.Size(800, 400);
             this.panelTables.TabIndex = 0;
             this.panelTables.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTables_Paint);
-            this.panelTables.Resize += new System.EventHandler(this.panelTables_Resize);
+            this.panelTables.Resize += new System.EventHandler(this.PanelTables_Resize);
             // 
             // buttonAddNewTable
             // 
@@ -64,7 +64,7 @@
             this.buttonAddNewTable.TabIndex = 1;
             this.buttonAddNewTable.Text = "Add  new Table";
             this.buttonAddNewTable.UseVisualStyleBackColor = true;
-            this.buttonAddNewTable.Click += new System.EventHandler(this.buttonAddNewTable_Click);
+            this.buttonAddNewTable.Click += new System.EventHandler(this.ButtonAddNewTable_Click);
             // 
             // checkBoxGrid
             // 
@@ -77,7 +77,7 @@
             this.checkBoxGrid.TabIndex = 2;
             this.checkBoxGrid.Text = "Gride";
             this.checkBoxGrid.UseVisualStyleBackColor = true;
-            this.checkBoxGrid.CheckedChanged += new System.EventHandler(this.checkBoxGrid_CheckedChanged);
+            this.checkBoxGrid.CheckedChanged += new System.EventHandler(this.CheckBoxGrid_CheckedChanged);
             // 
             // groupBoxScale
             // 
@@ -100,7 +100,7 @@
             this.radioButtonScale2.TabIndex = 0;
             this.radioButtonScale2.Text = "x 2.0";
             this.radioButtonScale2.UseVisualStyleBackColor = true;
-            this.radioButtonScale2.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
+            this.radioButtonScale2.CheckedChanged += new System.EventHandler(this.RadioButtonScale_CheckedChanged);
             // 
             // radioButtonScale1
             // 
@@ -113,7 +113,7 @@
             this.radioButtonScale1.TabStop = true;
             this.radioButtonScale1.Text = "x 1.0";
             this.radioButtonScale1.UseVisualStyleBackColor = true;
-            this.radioButtonScale1.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
+            this.radioButtonScale1.CheckedChanged += new System.EventHandler(this.RadioButtonScale_CheckedChanged);
             // 
             // radioButtonScale05
             // 
@@ -124,7 +124,7 @@
             this.radioButtonScale05.TabIndex = 0;
             this.radioButtonScale05.Text = "x 0.5";
             this.radioButtonScale05.UseVisualStyleBackColor = true;
-            this.radioButtonScale05.CheckedChanged += new System.EventHandler(this.radioButtonScale_CheckedChanged);
+            this.radioButtonScale05.CheckedChanged += new System.EventHandler(this.RadioButtonScale_CheckedChanged);
             // 
             // checkBoxAxis
             // 
@@ -137,7 +137,7 @@
             this.checkBoxAxis.TabIndex = 2;
             this.checkBoxAxis.Text = "Axis";
             this.checkBoxAxis.UseVisualStyleBackColor = true;
-            this.checkBoxAxis.CheckedChanged += new System.EventHandler(this.checkBoxAxis_CheckedChanged);
+            this.checkBoxAxis.CheckedChanged += new System.EventHandler(this.CheckBoxAxis_CheckedChanged);
             // 
             // comboBoxTablesName
             // 
@@ -148,7 +148,7 @@
             this.comboBoxTablesName.TabIndex = 5;
             this.comboBoxTablesName.Text = "Empty";
             this.comboBoxTablesName.Visible = false;
-            this.comboBoxTablesName.SelectedIndexChanged += new System.EventHandler(this.comboBoxTablesName_SelectedIndexChanged);
+            this.comboBoxTablesName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTablesName_SelectedIndexChanged);
             // 
             // buttonDeleteSelectedTable
             // 
@@ -159,7 +159,7 @@
             this.buttonDeleteSelectedTable.Text = "Delete Selected Table";
             this.buttonDeleteSelectedTable.UseVisualStyleBackColor = true;
             this.buttonDeleteSelectedTable.Visible = false;
-            this.buttonDeleteSelectedTable.Click += new System.EventHandler(this.buttonDeleteSelectedTable_Click);
+            this.buttonDeleteSelectedTable.Click += new System.EventHandler(this.ButtonDeleteSelectedTable_Click);
             // 
             // buttonRotateLeft
             // 
@@ -170,7 +170,7 @@
             this.buttonRotateLeft.Text = "RotateLeft";
             this.buttonRotateLeft.UseVisualStyleBackColor = true;
             this.buttonRotateLeft.Visible = false;
-            this.buttonRotateLeft.Click += new System.EventHandler(this.buttonRotateLeft_Click);
+            this.buttonRotateLeft.Click += new System.EventHandler(this.ButtonRotateLeft_Click);
             // 
             // buttonRotateRight
             // 
@@ -181,7 +181,7 @@
             this.buttonRotateRight.Text = "RotateRight";
             this.buttonRotateRight.UseVisualStyleBackColor = true;
             this.buttonRotateRight.Visible = false;
-            this.buttonRotateRight.Click += new System.EventHandler(this.buttonRotateRight_Click);
+            this.buttonRotateRight.Click += new System.EventHandler(this.ButtonRotateRight_Click);
             // 
             // FormTables
             // 

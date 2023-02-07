@@ -12,7 +12,6 @@ namespace AgHW7_2
     {
         static void Main()
         {
-            Point point = new Point();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormTables());
