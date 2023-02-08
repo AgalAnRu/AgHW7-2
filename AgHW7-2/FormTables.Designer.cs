@@ -52,14 +52,14 @@
             this.panelTables.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panelTables.Location = new System.Drawing.Point(214, 58);
             this.panelTables.Name = "panelTables";
-            this.panelTables.Size = new System.Drawing.Size(909, 502);
+            this.panelTables.Size = new System.Drawing.Size(558, 491);
             this.panelTables.TabIndex = 0;
             this.panelTables.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTables_Paint);
             this.panelTables.Resize += new System.EventHandler(this.PanelTables_Resize);
             // 
             // buttonAddNewTable
             // 
-            this.buttonAddNewTable.Location = new System.Drawing.Point(12, 145);
+            this.buttonAddNewTable.Location = new System.Drawing.Point(12, 58);
             this.buttonAddNewTable.Name = "buttonAddNewTable";
             this.buttonAddNewTable.Size = new System.Drawing.Size(92, 59);
             this.buttonAddNewTable.TabIndex = 1;
@@ -72,7 +72,7 @@
             this.checkBoxGrid.AutoSize = true;
             this.checkBoxGrid.Checked = true;
             this.checkBoxGrid.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxGrid.Location = new System.Drawing.Point(224, 12);
+            this.checkBoxGrid.Location = new System.Drawing.Point(228, 12);
             this.checkBoxGrid.Name = "checkBoxGrid";
             this.checkBoxGrid.Size = new System.Drawing.Size(51, 17);
             this.checkBoxGrid.TabIndex = 2;
@@ -85,7 +85,7 @@
             this.groupBoxScale.Controls.Add(this.radioButtonScale2);
             this.groupBoxScale.Controls.Add(this.radioButtonScale1);
             this.groupBoxScale.Controls.Add(this.radioButtonScale05);
-            this.groupBoxScale.Location = new System.Drawing.Point(309, 3);
+            this.groupBoxScale.Location = new System.Drawing.Point(313, 3);
             this.groupBoxScale.Name = "groupBoxScale";
             this.groupBoxScale.Size = new System.Drawing.Size(264, 49);
             this.groupBoxScale.TabIndex = 3;
@@ -132,7 +132,7 @@
             this.checkBoxAxis.AutoSize = true;
             this.checkBoxAxis.Checked = true;
             this.checkBoxAxis.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAxis.Location = new System.Drawing.Point(223, 35);
+            this.checkBoxAxis.Location = new System.Drawing.Point(227, 35);
             this.checkBoxAxis.Name = "checkBoxAxis";
             this.checkBoxAxis.Size = new System.Drawing.Size(45, 17);
             this.checkBoxAxis.TabIndex = 2;
@@ -143,7 +143,7 @@
             // buttonDeleteSelectedTable
             // 
             this.buttonDeleteSelectedTable.Enabled = false;
-            this.buttonDeleteSelectedTable.Location = new System.Drawing.Point(12, 220);
+            this.buttonDeleteSelectedTable.Location = new System.Drawing.Point(12, 133);
             this.buttonDeleteSelectedTable.Name = "buttonDeleteSelectedTable";
             this.buttonDeleteSelectedTable.Size = new System.Drawing.Size(92, 59);
             this.buttonDeleteSelectedTable.TabIndex = 6;
@@ -155,7 +155,7 @@
             // buttonRotateLeft
             // 
             this.buttonRotateLeft.Enabled = false;
-            this.buttonRotateLeft.Location = new System.Drawing.Point(13, 327);
+            this.buttonRotateLeft.Location = new System.Drawing.Point(13, 240);
             this.buttonRotateLeft.Name = "buttonRotateLeft";
             this.buttonRotateLeft.Size = new System.Drawing.Size(91, 51);
             this.buttonRotateLeft.TabIndex = 7;
@@ -167,7 +167,7 @@
             // buttonRotateRight
             // 
             this.buttonRotateRight.Enabled = false;
-            this.buttonRotateRight.Location = new System.Drawing.Point(110, 327);
+            this.buttonRotateRight.Location = new System.Drawing.Point(110, 240);
             this.buttonRotateRight.Name = "buttonRotateRight";
             this.buttonRotateRight.Size = new System.Drawing.Size(91, 51);
             this.buttonRotateRight.TabIndex = 7;
@@ -179,7 +179,7 @@
             // listBoxTables
             // 
             this.listBoxTables.FormattingEnabled = true;
-            this.listBoxTables.Location = new System.Drawing.Point(110, 145);
+            this.listBoxTables.Location = new System.Drawing.Point(110, 58);
             this.listBoxTables.Name = "listBoxTables";
             this.listBoxTables.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxTables.Size = new System.Drawing.Size(91, 134);
@@ -189,7 +189,7 @@
             // 
             // buttonSelectAll
             // 
-            this.buttonSelectAll.Location = new System.Drawing.Point(110, 286);
+            this.buttonSelectAll.Location = new System.Drawing.Point(110, 199);
             this.buttonSelectAll.Name = "buttonSelectAll";
             this.buttonSelectAll.Size = new System.Drawing.Size(91, 23);
             this.buttonSelectAll.TabIndex = 9;
@@ -202,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 592);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.buttonSelectAll);
             this.Controls.Add(this.listBoxTables);
             this.Controls.Add(this.buttonRotateRight);
@@ -213,6 +213,7 @@
             this.Controls.Add(this.checkBoxGrid);
             this.Controls.Add(this.buttonAddNewTable);
             this.Controls.Add(this.panelTables);
+            this.MinimumSize = new System.Drawing.Size(600, 350);
             this.Name = "FormTables";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FormTables";
