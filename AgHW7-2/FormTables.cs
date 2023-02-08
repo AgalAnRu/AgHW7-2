@@ -105,7 +105,7 @@ namespace AgHW7_2
         }
         private void ButtonDeleteSelectedTable_Click(object sender, EventArgs e)
         {
-            for (int i = ListTables.Tables.Count - 1; i >=0; i--)
+            for (int i = ListTables.Tables.Count - 1; i >= 0; i--)
             {
                 if (ListTables.Tables[i].Selection == Selection.Selected)
                 {
@@ -145,11 +145,12 @@ namespace AgHW7_2
         private void SetControlsVisibility(bool visibility)
         {
             buttonDeleteSelectedTable.Visible = visibility;
+            buttonSelectAll.Visible = visibility;
             buttonRotateLeft.Visible = visibility;
             buttonRotateRight.Visible = visibility;
             listBoxTables.Visible = visibility;
         }
-        private void SetControlsEnabled (bool enablity)
+        private void SetControlsEnabled(bool enablity)
         {
             buttonDeleteSelectedTable.Enabled = enablity;
             buttonRotateLeft.Enabled = enablity;
@@ -242,6 +243,27 @@ namespace AgHW7_2
                 SetControlsEnabled(false);
             }
             panelTables.Invalidate();
+        }
+
+        private void ButtonSelectAll_Click(object sender, EventArgs e)
+        {
+            if (buttonSelectAll.Text == "Select All")
+            {
+                for (int i = 0; i < listBoxTables.Items.Count; i++)
+                {
+                    listBoxTables.SetSelected(i, true);
+                }
+                buttonSelectAll.Text = "Deselect All";
+                return;
+            }
+            if (buttonSelectAll.Text == "Deselect All")
+            {
+                for (int i = 0; i < listBoxTables.Items.Count; i++)
+                {
+                    listBoxTables.SetSelected(i, false);
+                }
+                buttonSelectAll.Text = "Select All";
+            }
         }
     }
     public class CellPoint

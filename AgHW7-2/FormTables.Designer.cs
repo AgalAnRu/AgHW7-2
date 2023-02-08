@@ -40,6 +40,7 @@
             this.buttonRotateLeft = new System.Windows.Forms.Button();
             this.buttonRotateRight = new System.Windows.Forms.Button();
             this.listBoxTables = new System.Windows.Forms.ListBox();
+            this.buttonSelectAll = new System.Windows.Forms.Button();
             this.groupBoxScale.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +147,7 @@
             this.buttonDeleteSelectedTable.Name = "buttonDeleteSelectedTable";
             this.buttonDeleteSelectedTable.Size = new System.Drawing.Size(92, 59);
             this.buttonDeleteSelectedTable.TabIndex = 6;
-            this.buttonDeleteSelectedTable.Text = "Delete Selected Table";
+            this.buttonDeleteSelectedTable.Text = "Delete Selected";
             this.buttonDeleteSelectedTable.UseVisualStyleBackColor = true;
             this.buttonDeleteSelectedTable.Visible = false;
             this.buttonDeleteSelectedTable.Click += new System.EventHandler(this.ButtonDeleteSelectedTable_Click);
@@ -186,11 +187,23 @@
             this.listBoxTables.Visible = false;
             this.listBoxTables.SelectedIndexChanged += new System.EventHandler(this.ListBoxTables_SelectedIndexChanged);
             // 
+            // buttonSelectAll
+            // 
+            this.buttonSelectAll.Location = new System.Drawing.Point(110, 286);
+            this.buttonSelectAll.Name = "buttonSelectAll";
+            this.buttonSelectAll.Size = new System.Drawing.Size(91, 23);
+            this.buttonSelectAll.TabIndex = 9;
+            this.buttonSelectAll.Text = "Select All";
+            this.buttonSelectAll.UseVisualStyleBackColor = true;
+            this.buttonSelectAll.Visible = false;
+            this.buttonSelectAll.Click += new System.EventHandler(this.ButtonSelectAll_Click);
+            // 
             // FormTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 592);
+            this.Controls.Add(this.buttonSelectAll);
             this.Controls.Add(this.listBoxTables);
             this.Controls.Add(this.buttonRotateRight);
             this.Controls.Add(this.buttonRotateLeft);
@@ -224,5 +237,6 @@
         private System.Windows.Forms.Button buttonRotateLeft;
         private System.Windows.Forms.Button buttonRotateRight;
         private System.Windows.Forms.ListBox listBoxTables;
+        private System.Windows.Forms.Button buttonSelectAll;
     }
 }
