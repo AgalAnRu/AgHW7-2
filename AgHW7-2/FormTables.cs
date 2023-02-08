@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace AgHW7_2
@@ -16,7 +18,6 @@ namespace AgHW7_2
         private readonly int GlobalScale = 2;
         private readonly int XOffset = 5;
         private int GraphicScale = 10;
-        private int SelectedTable;
         public Point OriginXY;
         public FormTables()
         {
@@ -54,7 +55,8 @@ namespace AgHW7_2
                 cellPoints.SetXY(corners[i].X, corners[i].Y);
                 polygonCornes[i] = cellPoints.ToOriginPoint();
             }
-            Pen pen = new Pen(Color.Red, 2);
+            Color penColor = (table.Selection == Selection.Selected) ? Color.Red : Color.White;
+            Pen pen = new Pen(penColor, 2);
             gr.DrawPolygon(pen, polygonCornes);
         }
         private void DrawAxis(Panel panel, Graphics gr)
@@ -98,23 +100,20 @@ namespace AgHW7_2
         {
             ListTables.Add();
             SetControlsVisibility(true);
-            comboBoxTablesName.Items.Add(ListTables.TableNames[ListTables.TableNames.Count - 1]);
-            comboBoxTablesName.Text = comboBoxTablesName.Items[comboBoxTablesName.Items.Count - 1].ToString();
-            comboBoxTablesName.SelectedIndex = comboBoxTablesName.Items.Count - 1;
-            SelectedTable = comboBoxTablesName.SelectedIndex;
+            listBoxTables.Items.Add(ListTables.TableNames[ListTables.TableNames.Count - 1]);
             panelTables.Invalidate();
         }
         private void ButtonDeleteSelectedTable_Click(object sender, EventArgs e)
         {
-            SelectedTable = comboBoxTablesName.SelectedIndex;
-            ListTables.Delete(SelectedTable);
-            comboBoxTablesName.Items.Remove(comboBoxTablesName.Items[SelectedTable]);
-            if (ListTables.Tables.Count != 0)
+            for (int i = ListTables.Tables.Count - 1; i >=0; i--)
             {
-                SelectedTable = ListTables.Tables.Count - 1;
-                comboBoxTablesName.Text = comboBoxTablesName.Items[SelectedTable].ToString();
-                comboBoxTablesName.SelectedIndex = SelectedTable;
+                if (ListTables.Tables[i].Selection == Selection.Selected)
+                {
+                    ListTables.Delete(i);
+                    listBoxTables.Items.RemoveAt(i);
+                }
             }
+            SetControlsEnabled(false);
             if (ListTables.Tables.Count == 0)
             {
                 SetControlsVisibility(false);
@@ -123,12 +122,24 @@ namespace AgHW7_2
         }
         private void ButtonRotateLeft_Click(object sender, EventArgs e)
         {
-            ListTables.Tables[SelectedTable].TurnLeft();
+            foreach (Table table in ListTables.Tables)
+            {
+                if (table.Selection == Selection.Selected)
+                {
+                    table.TurnLeft();
+                }
+            }
             panelTables.Invalidate();
         }
         private void ButtonRotateRight_Click(object sender, EventArgs e)
         {
-            ListTables.Tables[SelectedTable].TurnRight();
+            foreach (Table table in ListTables.Tables)
+            {
+                if (table.Selection == Selection.Selected)
+                {
+                    table.TurnRight();
+                }
+            }
             panelTables.Invalidate();
         }
         private void SetControlsVisibility(bool visibility)
@@ -136,7 +147,13 @@ namespace AgHW7_2
             buttonDeleteSelectedTable.Visible = visibility;
             buttonRotateLeft.Visible = visibility;
             buttonRotateRight.Visible = visibility;
-            comboBoxTablesName.Visible = visibility;
+            listBoxTables.Visible = visibility;
+        }
+        private void SetControlsEnabled (bool enablity)
+        {
+            buttonDeleteSelectedTable.Enabled = enablity;
+            buttonRotateLeft.Enabled = enablity;
+            buttonRotateRight.Enabled = enablity;
         }
         private void CheckBoxGrid_CheckedChanged(object sender, EventArgs e)
         {
@@ -178,10 +195,6 @@ namespace AgHW7_2
             }
             panelTables.Invalidate();
         }
-        private void ComboBoxTablesName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedTable = comboBoxTablesName.SelectedIndex;
-        }
         private void PanelTables_Resize(object sender, EventArgs e)
         {
             panelTables.Invalidate();
@@ -212,6 +225,23 @@ namespace AgHW7_2
         private void ConvertCoordinateToCell(Point point)
         {
 
+        }
+
+        private void ListBoxTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listBoxTables.Items.Count; i++)
+            {
+                ListTables.Tables[i].Selection = (listBoxTables.GetSelected(i)) ? Selection.Selected : Selection.Deselected;
+            }
+            if (listBoxTables.SelectedIndex != -1)
+            {
+                SetControlsEnabled(true);
+            }
+            if (listBoxTables.SelectedIndex == -1)
+            {
+                SetControlsEnabled(false);
+            }
+            panelTables.Invalidate();
         }
     }
     public class CellPoint

@@ -15,7 +15,11 @@ public enum FixedCorner
 }
 namespace AgHW7_2
 {
-
+    enum Selection
+    {
+        Selected,
+        Deselected
+    }
     internal class Table
     {
         internal FixedCorner FixedCorner = FixedCorner.BottomLeft;
@@ -27,6 +31,7 @@ namespace AgHW7_2
         private double AngleRadians;
         internal int Width;
         internal int Height;
+        internal Selection Selection;
         private static int MaxSideSize = 3;
         private static int MinSideSize = 2;
         private static int MaxTableArea = 6;
@@ -40,6 +45,7 @@ namespace AgHW7_2
             BottomLeft.X = 0;
             BottomLeft.Y = 0;
             AngleRadians = AngleDegrees * Math.PI / 180.0;
+            Selection = Selection.Deselected;
         }
         internal Table(Point pointFixedCorner)
         {
@@ -49,6 +55,7 @@ namespace AgHW7_2
             BottomLeft.X = pointFixedCorner.X;
             BottomLeft.Y = pointFixedCorner.Y;
             AngleRadians = AngleDegrees * Math.PI / 180.0;
+            Selection = Selection.Deselected;
         }
         internal Table(Point pointFixedCorner, FixedCorner fixedCorner)
         {
@@ -98,6 +105,18 @@ namespace AgHW7_2
                 TopRight.Y = (int)(BottomLeft.Y + Width * Math.Round(Math.Sin(AngleRadians)) + Height * Math.Round(Math.Cos(AngleRadians)));
             }
             return TopRight;
+        }
+        internal void Select()
+        {
+            Selection = Selection.Selected;
+        }
+        internal void Deselect()
+        {
+            Selection = Selection.Deselected;
+        }
+        internal void ChangeSelection()
+        {
+            Selection = (Selection == Selection.Selected)? Selection.Deselected: Selection.Selected;
         }
         private void Turn(int angle)
         {
