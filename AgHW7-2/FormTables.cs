@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace AgHW7_2
@@ -218,6 +216,38 @@ namespace AgHW7_2
                 }
                 buttonSelectAll.Text = "Select All";
             }
+        }
+        private void PanelTables_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (ListTables.Tables.Count > 0)
+            {
+                for (int i = 0; i < ListTables.Tables.Count; i++)
+                {
+                    if (IsPointInsideTable(e.Location, ListTables.Tables[i]))
+                    {
+                        ListTables.Tables[i].ChangeSelection();
+                        listBoxTables.SetSelected(i, !listBoxTables.GetSelected(i));
+                    }
+                }
+            }
+        }
+        private bool IsPointInsideTable(Point point, Table table)
+        {
+            Point[] corners = table.GetCorners();
+            Point[] polygonCornes = new Point[corners.Length];
+            int anglSignPrevoius = 0;
+            double angle;
+            int angleSign;
+            for (int i = 0; i < corners.Length; i++)
+            {
+                polygonCornes[i] = Coordinate.ConvertToViewportXY(corners[i]);
+                angle = (Math.Atan((point.Y - polygonCornes[i].Y) / (double)(point.X - polygonCornes[i].X))) * 180 / Math.PI;
+                angleSign = (angle > 0) ? 1 : -1;
+                if (angleSign == anglSignPrevoius)
+                    return false;
+                anglSignPrevoius= angleSign;
+            }
+            return true;
         }
     }
 }

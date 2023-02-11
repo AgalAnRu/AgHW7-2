@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.Data;
 
 public enum FixedCorner
 {
@@ -32,9 +28,9 @@ namespace AgHW7_2
         internal int Width;
         internal int Height;
         internal Selection Selection;
-        private static int MaxSideSize = 3;
-        private static int MinSideSize = 2;
-        private static int MaxTableArea = 6;
+        private static int MaxSideSize = 5;
+        private static int MinSideSize = 5;
+        private static int MaxTableArea = 25;
         private static Random Rnd = new Random();
         internal Table()
         {
@@ -104,7 +100,7 @@ namespace AgHW7_2
         }
         internal void TurnLeft()
         {
-            AngleDegrees += 90;
+            AngleDegrees += 45;
             if (AngleDegrees >= 360)
                 AngleDegrees -= 360;
             AngleRadians = AngleDegrees * Math.PI / 180.0;
