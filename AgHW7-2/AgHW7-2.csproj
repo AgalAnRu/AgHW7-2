@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Area.cs" />
+    <Compile Include="Classes\Coordinate.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Table.cs" />
     <Compile Include="FormTables.cs">

@@ -54,7 +54,7 @@
             this.panelTables.Name = "panelTables";
             this.panelTables.Size = new System.Drawing.Size(558, 491);
             this.panelTables.TabIndex = 0;
-            this.panelTables.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTables_Paint);
+            this.panelTables.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelTables_Paint);
             this.panelTables.Resize += new System.EventHandler(this.PanelTables_Resize);
             // 
             // buttonAddNewTable
