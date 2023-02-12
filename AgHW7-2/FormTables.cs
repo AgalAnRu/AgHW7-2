@@ -50,13 +50,16 @@ namespace AgHW7_2
             {
                 polygonCornes[i] = Coordinate.ConvertToViewportXY(corners[i]);
             }
-            Color penColor = (table.Selection == Selection.Selected) ? Color.Red : Color.White;
+            Color penColor = (table.Selection == Selection.Selected) ? Color.Blue : Color.White;
             Pen pen = new Pen(penColor, 2);
             gr.DrawPolygon(pen, polygonCornes);
+            pen.Color = Color.Magenta;
+            //pen.Width = 1;
+            gr.DrawEllipse(pen, polygonCornes[0].X - 2, polygonCornes[0].Y - 2, 4, 4);
         }
         private void DrawAxis(Graphics gr)
         {
-            Pen pen = new Pen(Color.Blue, 1);
+            Pen pen = new Pen(Color.DarkGreen, 1);
             gr.DrawLine(pen, new Point(0, Coordinate.Origin.Y), new Point((int)gr.VisibleClipBounds.Width, Coordinate.Origin.Y));
             gr.DrawLine(pen, new Point(Coordinate.Origin.X, 0), new Point(Coordinate.Origin.X, (int)gr.VisibleClipBounds.Height));
         }
@@ -190,10 +193,12 @@ namespace AgHW7_2
             if (listBoxTables.SelectedIndex != -1)
             {
                 SetControlsEnabled(true);
+                buttonSelectAll.Text = "Deselect All";
             }
             if (listBoxTables.SelectedIndex == -1)
             {
                 SetControlsEnabled(false);
+                buttonSelectAll.Text = "Select All";
             }
             panelTables.Invalidate();
         }
@@ -223,7 +228,7 @@ namespace AgHW7_2
             {
                 for (int i = 0; i < ListTables.Tables.Count; i++)
                 {
-                    if (IsPointInsideTable(e.Location, ListTables.Tables[i]))
+                    if (IsPointInsidePoligon(e.Location, ListTables.Tables[i]))
                     {
                         ListTables.Tables[i].ChangeSelection();
                         listBoxTables.SetSelected(i, !listBoxTables.GetSelected(i));
@@ -231,21 +236,25 @@ namespace AgHW7_2
                 }
             }
         }
-        private bool IsPointInsideTable(Point point, Table table)
+        private bool IsPointInsidePoligon(Point point, Table table)
         {
             Point[] corners = table.GetCorners();
-            Point[] polygonCornes = new Point[corners.Length];
-            int anglSignPrevoius = 0;
-            double angle;
-            int angleSign;
             for (int i = 0; i < corners.Length; i++)
             {
-                polygonCornes[i] = Coordinate.ConvertToViewportXY(corners[i]);
-                angle = (Math.Atan((point.Y - polygonCornes[i].Y) / (double)(point.X - polygonCornes[i].X))) * 180 / Math.PI;
-                angleSign = (angle > 0) ? 1 : -1;
-                if (angleSign == anglSignPrevoius)
+                corners[i] = Coordinate.ConvertToViewportXY(corners[i]);
+            }
+            Point start = corners[corners.Length - 1];
+            Point end = corners[0];
+            int sign = Math.Sign((end.X - start.X) * (point.Y - start.Y) - (end.Y - start.Y) * (point.X - start.X));
+            int signNext;
+            for (int i = 0; i < corners.Length - 1; i++)
+            {
+                start = corners[i];
+                end = corners[i + 1];
+                signNext = Math.Sign((end.X - start.X) * (point.Y - start.Y) - (end.Y - start.Y) * (point.X - start.X));
+                if (sign != signNext)
                     return false;
-                anglSignPrevoius= angleSign;
+                sign = signNext;
             }
             return true;
         }

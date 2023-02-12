@@ -28,9 +28,9 @@ namespace AgHW7_2
         internal int Width;
         internal int Height;
         internal Selection Selection;
-        private static int MaxSideSize = 5;
-        private static int MinSideSize = 5;
-        private static int MaxTableArea = 25;
+        private static int MaxSideSize = 3;
+        private static int MinSideSize = 2;
+        private static int MaxTableArea = 6;
         private static Random Rnd = new Random();
         internal Table()
         {
@@ -100,7 +100,7 @@ namespace AgHW7_2
         }
         internal void TurnLeft()
         {
-            AngleDegrees += 45;
+            AngleDegrees += 90;
             if (AngleDegrees >= 360)
                 AngleDegrees -= 360;
             AngleRadians = AngleDegrees * Math.PI / 180.0;
